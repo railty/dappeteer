@@ -1,5 +1,5 @@
 {
-  "name": "@chainsafe/dappeteer",
+  "name": "dappeteer",
   "version": "3.0.0",
   "description": "E2E testing for dApps using Puppeteer + MetaMask",
   "main": "dist/index.js",
@@ -22,7 +22,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/chainsafe/dappeteer.git"
+    "url": "https://github.com/railty/dappeteer.git"
   },
   "keywords": [
     "e2e",

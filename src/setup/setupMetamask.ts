@@ -3,7 +3,7 @@ import { Browser, Page } from 'puppeteer';
 import { getMetamask } from '../metamask';
 import { Dappeteer, MetamaskOptions } from '../types';
 
-import { closePopup, confirmWelcomeScreen, importAccount, showTestNets } from './setupActions';
+import { closePopup, confirmPassword, confirmWelcomeScreen, importAccount, showTestNets } from './setupActions';
 
 /**
  * Setup MetaMask with base account
@@ -17,6 +17,13 @@ export async function setupMetamask<Options = MetamaskOptions>(
   steps: Step<Options>[] = defaultMetamaskSteps,
 ): Promise<Dappeteer> {
   const page = await closeHomeScreen(browser);
+
+  await page.waitForSelector("button");
+  const buttonText =  await page.$eval('button', btn => btn.textContent);
+  //console.log(buttonText);
+
+  if (buttonText == "Get Started") steps = defaultMetamaskSteps;
+  if (buttonText == "Unlock") steps = [confirmPassword];
 
   // goes through the installation steps required by metamask
   for (const step of steps) {

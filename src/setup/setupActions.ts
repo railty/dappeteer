@@ -52,3 +52,15 @@ export const closePopup = async (page: Page): Promise<void> => {
   await new Promise((resolve) => setTimeout(resolve, 1000));
   await page.$eval('.popover-header__button', (node: HTMLElement) => node.click());
 };
+
+export async function confirmPassword(
+  metamaskPage: Page,
+  {
+    seed = 'already turtle birth enroll since owner keep patch skirt drift any dinner',
+    password = 'password1234',
+  }: MetamaskOptions,
+): Promise<void> {
+
+  await metamaskPage.type("form.unlock-page__form input#password", password);
+  await metamaskPage.$eval('button', (node: HTMLElement) => node.click());
+}

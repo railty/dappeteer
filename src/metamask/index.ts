@@ -11,6 +11,8 @@ import { importPk } from './importPk';
 import { lock } from './lock';
 import { sign } from './sign';
 import { switchAccount } from './switchAccount';
+import { getAccounts } from './getAccounts';
+import { createAccount } from './createAccount';
 import { switchNetwork } from './switchNetwork';
 import { unlock } from './unlock';
 
@@ -39,6 +41,8 @@ export const getMetamask = async (page: Page, version?: string): Promise<Dappete
     lock: lock(page, setSignedIn, getSingedIn, version),
     sign: sign(page, getSingedIn, version),
     switchAccount: switchAccount(page, version),
+    getAccounts: getAccounts(page, version),
+    createAccount: createAccount(page, version),
     switchNetwork: switchNetwork(page, version),
     unlock: unlock(page, setSignedIn, getSingedIn, version),
     addToken: addToken(page),
