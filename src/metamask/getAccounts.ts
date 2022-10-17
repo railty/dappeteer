@@ -1,12 +1,14 @@
 import { Page } from 'puppeteer';
 
-import { clickOnElement, openProfileDropdown } from '../helpers';
+import { clickOnElement, openProfileDropdown, clickOnLogo } from '../helpers';
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 export const getAccounts = (page: Page, version?: string) => async (): Promise<any> => {
   await page.bringToFront();
   await openProfileDropdown(page);
 
+  await page.waitForTimeout(1000);
+  
   const accounts = await page.evaluate(()=>{
     const divs = Array.from(document.querySelectorAll("div.account-menu__accounts div.account-menu__account"));
     const accounts = divs.map((div)=>{
@@ -23,5 +25,6 @@ export const getAccounts = (page: Page, version?: string) => async (): Promise<a
     });
     return accounts;
   });
+  await clickOnLogo(page);
   return accounts;
 };
